@@ -18,6 +18,7 @@ package com.example.android.dessertclicker
 
 import android.content.ActivityNotFoundException
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -27,6 +28,10 @@ import androidx.databinding.DataBindingUtil
 import com.example.android.dessertclicker.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    val TAG = "MainActivity"
+    val KEY_REVENUE = "revenue_key"
+    val KEY_DESSERT_SOLD = "dessert_sold_key"
 
     private var revenue = 0
     private var dessertsSold = 0
@@ -63,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("MainActivity", "onCreate Called")
         // Use Data Binding to get reference to the views
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
@@ -76,6 +82,50 @@ class MainActivity : AppCompatActivity() {
 
         // Make sure the correct dessert is showing
         binding.dessertButton.setImageResource(currentDessert.imageId)
+
+        if (savedInstanceState != null) {
+            revenue = savedInstanceState.getInt(KEY_REVENUE, 0)
+            dessertsSold = savedInstanceState.getInt(KEY_DESSERT_SOLD, 0)
+            showCurrentDessert()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_REVENUE, revenue)
+        outState.putInt(KEY_DESSERT_SOLD, dessertsSold)
+
+        Log.d(TAG, "onSaveInstanceState Called")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart Called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume Called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause Called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop Called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy Called")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart Called")
     }
 
     /**

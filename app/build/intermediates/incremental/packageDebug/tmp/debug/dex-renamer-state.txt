@@ -1,0 +1,4 @@
+#Sat Apr 09 20:51:28 WIB 2022
+base.0=/Users/blint/AndroidStudioProjects/android-basics-kotlin-dessert-clicker-app/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
